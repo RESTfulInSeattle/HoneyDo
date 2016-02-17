@@ -261,10 +261,10 @@
     <Content Include="Views\Td\Details.cshtml" />
     <Content Include="Views\Td\Edit.cshtml" />
     <Content Include="Views\Td\Index.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\Deadline.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Shared\DisplayTemplates\" />
     <Folder Include="Views\Shared\EditorTemplates\" />
   </ItemGroup>
   <ItemGroup>
