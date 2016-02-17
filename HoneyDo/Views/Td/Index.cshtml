@@ -1,0 +1,54 @@
+﻿@model IEnumerable<HoneyDo.Models.Todo>
+    @Scripts.Render("~bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.TaskName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Deadline)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Completed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Moredetails)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TaskName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Deadline)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Completed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Moredetails)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.TodoId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.TodoId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.TodoId })
+        </td>
+    </tr>
+}
+
+</table>
