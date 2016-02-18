@@ -4,6 +4,8 @@ using System.Net;
 using System.Web.Mvc;
 using HoneyDo.Models;
 
+//ToDo Put all business logic in controller to unit test it, and finish all tests
+
 namespace HoneyDo.Controllers
 {
     public class TdController : Controller
@@ -22,6 +24,8 @@ namespace HoneyDo.Controllers
             this.repository = new WorkingTodoRepository();
         }
 
+        //Logic for checking if a task is past due
+        //ToDo also check if it has been completed
         public bool PastDue(Todo todo, DateTime currentDay)
         {
             if (currentDay > todo.Deadline.Date)

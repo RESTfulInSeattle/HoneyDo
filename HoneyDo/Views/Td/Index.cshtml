@@ -44,7 +44,6 @@
     <ul>
             @foreach (var item in Model)
             {
-
                 <tr>
                     <td>
                         <li class="@(item.Deadline.Date < DateTime.Today && !item.Completed ? "overdue" : "notoverdue")">
@@ -66,8 +65,6 @@
                         @Html.ActionLink("Delete", "Delete", new {id = item.TodoId})
                     </td>
                 </tr>
-        
-
-    }
+            }
     </ul>
 </table>
