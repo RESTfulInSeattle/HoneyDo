@@ -12,11 +12,12 @@ namespace HoneyDo.Controllers
     {
         private Repository repository;
         private ApplicationDbContext db = new ApplicationDbContext();
+        //We want everyone who registers to be able to create, edit, and delete their ToDo
         private const string DefaultRole = "canEdit";
 
         public TdController(Repository respository)
         {
-            this.repository = respository;
+            repository = respository;
         }
 
         public TdController()
@@ -25,10 +26,9 @@ namespace HoneyDo.Controllers
         }
 
         //Logic for checking if a task is past due
-        //ToDo also check if it has been completed
         public bool PastDue(Todo todo, DateTime currentDay)
         {
-            if (currentDay > todo.Deadline.Date)
+            if (currentDay > todo.Deadline.Date && !todo.Completed)
             {
                 return true;
             }

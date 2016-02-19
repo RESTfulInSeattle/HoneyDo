@@ -13,8 +13,33 @@ namespace HoneyDo.Tests
     [TestClass]
     public class TdControllerTest
     {
+
         [TestMethod]
-        public void Todo_DueDate_Expiration_Check()
+        public void Todo_DueDate_Expiration_And_Completed()
+        {
+            //Arrange
+            var currentDay = new DateTime(2016, 2, 16);
+            var todoRepository = Mock.Create<Repository>();
+            Todo todo = new Todo()
+            {
+                Completed = true,
+                Deadline = new DateTime(2016, 2, 15),
+                Moredetails = "Test",
+                OwnerId = 0,
+                TaskName = "Test Task",
+                TodoId = 1
+            };
+
+            //Act
+            TdController controller = new TdController(todoRepository);
+            var expired = controller.PastDue(todo, currentDay);
+
+            //Assert
+            Assert.AreEqual(false, expired);
+        }
+
+        [TestMethod]
+        public void Todo_DueDate_Expiration_And_NotCompleted()
         {
             //Arrange
             var currentDay = new DateTime(2016, 2, 16);
