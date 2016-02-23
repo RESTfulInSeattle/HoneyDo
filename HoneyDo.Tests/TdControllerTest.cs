@@ -92,5 +92,31 @@ namespace HoneyDo.Tests
             //Assert
             Assert.AreEqual(2,model.Count());
         }
+
+        [TestMethod]
+        public void Details_Returns_A_Todo()
+        {
+            //Arrange
+            int id = 1;
+            var todoRepository = Mock.Create<Repository>();
+            Mock.Arrange(() => todoRepository.Find(id)).
+                Returns(
+                    new Todo()
+                    { 
+                        TodoId = 1,
+                        Deadline = new DateTime(2016, 2, 23),
+                        TaskName = "Test Task 1"
+                    }
+                ).MustBeCalled();
+
+            //Act
+            TdController controller = new TdController(todoRepository);
+            ViewResult viewResult = controller.Details(id) as ViewResult;
+            var model = viewResult.Model as Todo;
+
+            //Assert
+            Assert.AreEqual(1,model.TodoId);
+
+        }
     }
 }

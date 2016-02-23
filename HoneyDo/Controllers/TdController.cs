@@ -53,7 +53,9 @@ namespace HoneyDo.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Todo todo = db.Todoes.Find(id);
+
+            Todo todo = repository.Find(id);
+
             if (todo == null)
             {
                 return HttpNotFound();
