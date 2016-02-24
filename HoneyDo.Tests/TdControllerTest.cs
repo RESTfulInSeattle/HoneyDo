@@ -18,8 +18,7 @@ namespace HoneyDo.Tests
         public void Todo_DueDate_Expiration_And_Completed()
         {
             //Arrange
-            var currentDay = new DateTime(2016, 2, 16);
-            var todoRepository = Mock.Create<Repository>();
+           Mock.Create<Repository>();
             Todo todo = new Todo()
             {
                 Completed = true,
@@ -29,21 +28,16 @@ namespace HoneyDo.Tests
                 TaskName = "Test Task",
                 TodoId = 1
             };
-
-            //Act
-            TdController controller = new TdController(todoRepository);
-            var expired = controller.PastDue(todo, currentDay);
-
+            
             //Assert
-            Assert.AreEqual(false, expired);
+            Assert.AreEqual("notoverdue", todo.CssClass);
         }
 
         [TestMethod]
         public void Todo_DueDate_Expiration_And_NotCompleted()
         {
             //Arrange
-            var currentDay = new DateTime(2016, 2, 16);
-            var todoRepository = Mock.Create<Repository>();
+           Mock.Create<Repository>();
             Todo todo = new Todo()
             {
                 Completed = false,
@@ -53,13 +47,9 @@ namespace HoneyDo.Tests
                 TaskName = "Test Task",
                 TodoId = 1
             };
-
-            //Act
-            TdController controller=new TdController(todoRepository);
-            var expired = controller.PastDue(todo,currentDay);
-
+            
             //Assert
-            Assert.AreEqual(true,expired);
+            Assert.AreEqual("overdue",todo.CssClass);
         }
 
         [TestMethod]

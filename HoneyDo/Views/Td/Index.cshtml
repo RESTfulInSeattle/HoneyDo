@@ -7,22 +7,19 @@
     ViewBag.Title = "Index";
 }
 
-
 <style type="text/css">
-    li.overdue {
+    tr.overdue {
         color: lightcoral;
     }
 
-    li.notoverdue {
+    tr.notoverdue {
         color: black;
     }
 </style>
 
-
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-
 
 <table class="table">
         <tr>
@@ -41,30 +38,21 @@
             </th>
             <th></th>
         </tr>
-    <ul>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        <li class="@(item.Deadline.Date < DateTime.Today && !item.Completed ? "overdue" : "notoverdue")">
-                            @Html.DisplayFor(modelItem => item.TaskName)
-                        </li>
-                    </td>
-                      <td>
-                        @Html.DisplayFor(modelItem => item.Deadline)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Completed)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Moredetails)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new {id = item.TodoId}) |
-                        @Html.ActionLink("Details", "Details", new {id = item.TodoId}) |
-                        @Html.ActionLink("Delete", "Delete", new {id = item.TodoId})
-                    </td>
-                </tr>
-            }
-    </ul>
+
+        @foreach (var item in Model)
+        {
+            <tr class="@item.CssClass">
+                <td>@Html.DisplayFor(modelItem => item.TaskName)</td>
+                <td> @Html.DisplayFor(modelItem => item.Deadline)</td>
+                <td>@Html.DisplayFor(modelItem => item.Completed)</td>
+                <td>@Html.DisplayFor(modelItem => item.Moredetails)</td>
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.TodoId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.TodoId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.TodoId })
+                </td>
+            </tr>
+        }
+ 
 </table>

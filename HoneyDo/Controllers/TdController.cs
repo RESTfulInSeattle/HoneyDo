@@ -25,18 +25,6 @@ namespace HoneyDo.Controllers
             this.repository = new WorkingTodoRepository();
         }
 
-        //Logic for checking if a task is past due
-        public bool PastDue(Todo todo, DateTime currentDay)
-        {
-            if (currentDay > todo.Deadline.Date && !todo.Completed)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
         // GET: Td
         [Authorize(Roles = DefaultRole)]
         public ViewResult Index()
