@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using HoneyDo.Models;
@@ -30,6 +31,7 @@ namespace HoneyDo.Controllers
         public ViewResult Index()
         {
             var todoes = repository.GetAll();
+            todoes = todoes.OrderByDescending(todo => todo.Deadline).ToList();
             return View(todoes);
         }
 
